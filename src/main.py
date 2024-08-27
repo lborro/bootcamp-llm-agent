@@ -15,7 +15,11 @@ llm_agent = AzureChatOpenAI(azure_deployment="gpt-4o", temperature=0)
 react_agent = ReactAgent(llm=llm_agent, memory=MemorySaver())
 
 
-app = FastAPI(title="Movie Assitant", description="Assistant for movie-related questions", version="0.1.0")
+app = FastAPI(
+    title="Movie Assitant",
+    description="Assistant for movie-related questions",
+    version="0.1.0",
+)
 
 app.add_middleware(
     CORSMiddleware,

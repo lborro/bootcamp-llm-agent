@@ -26,18 +26,14 @@ def _modify_messages(messages: Sequence[BaseMessage]):
     # Finds the Nth most recent human message
     for i, message in enumerate(messages[::-1]):
         if isinstance(message, HumanMessage):
-            counter  += 1
+            counter += 1
             if counter == MEMORY_MAX_MESSAGES:
                 break
-    return [
-        SystemMessage(content=REACT_PROMPT)
-    ] + messages[-(i + 1) :]
+    return [SystemMessage(content=REACT_PROMPT)] + messages[-(i + 1) :]
 
 
 class ReactAgent:
-    def __init__(
-        self, llm: BaseChatModel, memory: BaseCheckpointSaver
-    ):
+    def __init__(self, llm: BaseChatModel, memory: BaseCheckpointSaver):
         """
         Initializes a ReactAgent instance.
 
