@@ -2,7 +2,7 @@ from fastapi import FastAPI, status, Security
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.concurrency import run_in_threadpool
 
-from langchain_openai import AzureChatOpenAI
+from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import MemorySaver
 
 from src.auth import get_api_key
@@ -11,7 +11,7 @@ from src.agent import ReactAgent
 from src.schema import BotResponse
 
 
-llm_agent = AzureChatOpenAI(azure_deployment="gpt-4o", temperature=0)
+llm_agent = ChatOpenAI(model="gpt-4o", temperature=0)
 react_agent = ReactAgent(llm=llm_agent, memory=MemorySaver())
 
 

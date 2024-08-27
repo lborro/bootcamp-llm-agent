@@ -5,12 +5,12 @@ from langchain_core.tools import tool
 from langchain_community.graphs import Neo4jGraph
 from langchain_community.vectorstores import Neo4jVector
 
-from langchain_openai import AzureOpenAIEmbeddings, AzureChatOpenAI
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 
 print(os.getenv("NEO4J_URL"))
 
 neo4j_vector_store = Neo4jVector.from_existing_graph(
-    embedding=AzureOpenAIEmbeddings(model="text-embedding-3-large"),
+    embedding=OpenAIEmbeddings(model="text-embedding-3-large"),
     url=os.getenv("NEO4J_URL"),
     username=os.getenv("NEO4J_USER"),
     password=os.getenv("NEO4J_PASSWORD"),
@@ -45,7 +45,7 @@ def get_info_about_movies(query: str):
     Por exemplo: quais filmes o ator X participou? ou quais atores participaram do filme X?
     """
     chain = GraphCypherQAChain.from_llm(
-        AzureChatOpenAI(temperature=0, model="gpt-4o"),
+        ChatOpenAI(temperature=0, model="gpt-4o"),
         graph=neo4j_graph,
         verbose=False,
         return_direct=True,
