@@ -1,5 +1,5 @@
 # Aplicações de IA com Agentes Autônomos 
-Este projeto foi desenvolvido para ensinar conceitos básicos relativos para o desenvolvimento de agentes usando modelos de linguagem massivos (LLMs, *Large Language Models*).
+Este projeto foi desenvolvido para ensinar conceitos básicos relativos para o desenvolvimento de agentes usando grandes modelos de linguagem (LLMs, *Large Language Models*).
 
 O foco será o desenvolvimento em **Python** de um assistente capaz de responder perguntas sobre filmes, armazenados como um knowledge Graph em [neo4j](https://neo4j.com).
 
@@ -64,7 +64,7 @@ O núcleo do bot conversacional é um agente [ReAct](https://arxiv.org/abs/2210.
 Se o agente determinar que uma ação deve ser executada (como a ativação de uma ferramenta), as ferramentas serão acionadas e os resultados serão retornados ao agente. Caso o agente não solicite a execução de ferramentas, a interação será concluída com uma resposta ao usuário.
 
 ### Implementação do agente ReAct
-A implementação agente ReAct foi feita usando `langchain v0.2` e `langgraph`. Mais especificamente, o agente funciona como grafo de estados (vide Figura) composto por três componentes principais:
+A implementação agente ReAct foi feita usando LangChain (`langchain v0.2`) e  LangGraph (`langgraph`). Mais especificamente, o agente funciona como grafo de estados (vide Figura) composto por três componentes principais:
 
 - Estado (State):  Estrutura de dados que armazena o status atual o agente.
 - Nós (Nodes): Funções Python que codificam a lógica de um agente. Elas recebem o estado atual como entrada, realizam alguma ação e retornam um estado atualizado.
@@ -73,7 +73,12 @@ A implementação agente ReAct foi feita usando `langchain v0.2` e `langgraph`. 
 ![ ](https://raw.githubusercontent.com/lborro/bootcamp-llm-agent/main/img/react-agent.png)
 
 
-O nó principal (agent) executa um modelo de linguagem (Azure gpt-4o versão 2024-05-13) para determinar se precisa buscar novas informações da base de dados relacional ou se já é capaz de dar uma resposta adequada à interação do usuário. A execução é finalizada se o agente não possui mais nenhuma ação a ser executada. 
+O nó principal (agent) executa um modelo de linguagem (Azure gpt-4o versão 2024-05-13) para determinar se precisa buscar novas informações da base de dados relacional ou se já é capaz de dar uma resposta adequada à interação do usuário. A execução é finalizada se o agente não possui mais nenhuma ação a ser executada.
+
+### Por que LangChain?
+LangChain é um framework de código aberto para criar aplicações com modelos de LLMs. Esses modelos, pré-treinados com grandes volumes de dados, podem responder a perguntas ou criar imagens a partir de textos. LangChain fornece ferramentas para melhorar a personalização e precisão dessas respostas. Nesse sentido, desenvolvedores podem criar novos prompts ou ajustar os existentes e permitir que os modelos acessem novos dados sem retreinamento.
+
+
 
 ## Contato
 Se precisar de ajuda ou quiser trocar uma ideia, sinta-se à vontade para me contatar:
