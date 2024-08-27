@@ -16,7 +16,7 @@ react_agent = ReactAgent(llm=llm_agent, memory=MemorySaver())
 
 
 app = FastAPI(
-    title="Movie Assitant",
+    title="Movie Assistant",
     description="Assistant for movie-related questions",
     version="0.1.0",
 )
@@ -35,7 +35,7 @@ def perform_healthcheck():
     return {"healthcheck": "Everything OK!"}
 
 
-@app.get("/pushseer", response_model=BotResponse)
+@app.get("/answer", response_model=BotResponse)
 async def answer_question(
     query: str, session_id: str, api_key: str = Security(get_api_key)
 ):
