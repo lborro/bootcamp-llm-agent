@@ -1,0 +1,13 @@
+fastapi==0.111.1 
+uvicorn==0.20.0
+langchain==0.2.14
+langchain-community==0.2.12          
+langchain-core==0.2.34                   
+langchain-openai==0.1.17       
+langgraph==0.2.11 
+langgraph-checkpoint==1.0.3
+pydantic==2.8.2              
+pydantic-core==2.20.1
+neo4j==5.19.0 
+neomodel==5.3.2
+pandas==2.2.2
