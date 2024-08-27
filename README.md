@@ -58,7 +58,22 @@ Para subir o serviço do neo4j, vamos utilizar o seguinte comando:
 
 Em seguida, faremos a ingestão do catálgo de filmes. Na pasta `notebooks`, há um Jupyter Notebook para essa finalidade: `ingest_data.ipynb`. 
 
-## Desenho de solução
+## Visão geral da solução
+
+O núcleo do bot conversacional é um agente React, projetado para extrair informações de um Knowledge Graph em neo4j. Especificamente, o bot é composto por um agente e um conjunto de ferramentas. Durante uma interação com o bot, o agente decide qual ação tomar, que pode incluir o uso de uma ferramenta.
+Se o agente determinar que uma ação deve ser executada (como a ativação de uma ferramenta), as ferramentas serão acionadas e os resultados serão retornados ao agente. Caso o agente não solicite a execução de ferramentas, a interação será concluída com uma resposta ao usuário.
+
+### Implementação do agente React
+A implementação agente React foi feita usando `langchain v0.2` e `langgraph`. Mais especificamente, o agente funciona como grafo de estados (vide Figura) composto por três componentes principais:
+
+- Estado (State):  Estrutura de dados que armazena o status atual o agente.
+- Nós (Nodes): Funções Python que codificam a lógica de um agente. Elas recebem o estado atual como entrada, realizam alguma ação e retornam um estado atualizado.
+- Arestas (Edges): Funções Python que determinam o próximo nó de acordo com o estado atual.
+
+![ ](https://raw.githubusercontent.com/lborro/bootcamp-llm-agent/main/img/react-agent.png)
+
+
+O nó principal (agent) executa um modelo de linguagem (Azure gpt-4o versão 2024-05-13) para determinar se precisa buscar novas informações da base de dados relacional ou se já é capaz de dar uma resposta adequada à interação do usuário. A execução é finalizada se o agente não possui mais nenhuma ação a ser executada. 
 
 ## Contato
 Se precisar de ajuda ou quiser trocar uma ideia, sinta-se à vontade para me contatar:
